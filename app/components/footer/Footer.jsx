@@ -1,4 +1,4 @@
-import { Container } from "@/app/components/Container";
+import { Container } from "../Container";
 import { FooterList } from "./FooterList";
 import Link from "next/link";
 

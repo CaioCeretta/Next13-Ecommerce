@@ -4,18 +4,37 @@ import { formatPrice } from "@/utils/formatPrice";
 import { truncateText } from "@/utils/truncateText";
 import { Rating } from "@mui/material";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 
-interface ProductCardProps {
-  product: any
+interface ImageProps {
+  image: string
 }
 
-const ProductCard = ({product}: ProductCardProps) => {
-  
-  const productRating = product.reviews.reduce((acc: number, item: any) => {
-    return item.rating + acc},  0) / product.reviews.length
+interface ReviewsProps {
+  rating: number
+}
+
+interface ProductCardProps {
+  id: string
+  name: string,
+  price: number,
+  images: ImageProps[]
+  reviews: ReviewsProps[]
+}
+
+const ProductCard = ({ product }: { product: ProductCardProps }) => {
+    const router = useRouter()
+
+  const {id, name, price, images, reviews} = product;
+
+  const productRating = reviews.reduce((acc: number, item: any) => {
+    return item.rating + acc},  0) / reviews.length
 
   return (
-    <div className="col-span-1
+    <div
+      onClick={() => router.push(`/product/${id}`)}
+
+    className="col-span-1
     cursor-pointer
     border-[1.2px]
     border-slate-200
@@ -37,20 +56,20 @@ const ProductCard = ({product}: ProductCardProps) => {
           <Image
           fill
           className="w-full h-full object-contain"
-          src={product.images[0].image}
-          alt={product.name}
+          src={images[0].image}
+          alt={name}
           />
         </div>
         <div className="mt-4">
-          {truncateText(product.name)}
+          {truncateText(name)}
         </div>
         <div className="font-semibold">
-          {formatPrice(product.price)}
+          {formatPrice(price)}
         </div>
         <div>
-          {product.reviews.length > 1 ? (
-            <span>{product.reviews.length} reviews</span>
-          ) : product.reviews.length === 1 ? (
+          {reviews.length > 1 ? (
+            <span>{reviews.length} reviews</span>
+          ) : reviews.length === 1 ? (
             <span>1 review</span>
           ) : (
             <span>No Reviews</span>
