@@ -2,7 +2,9 @@
 interactive, and they will be rendered in the browser' */
 'use client'
 
+import Button from "@/app/components/Button";
 import SetColor from "@/app/components/products/SetColor";
+import SetQuantity from "@/app/components/products/SetQuantity";
 import { Rating } from "@mui/material";
 import { useCallback, useState } from "react";
 
@@ -54,6 +56,19 @@ const ProductDetails = ({ product }: ProductDetailsProps) => {
       })
   }, [])
 
+  const handleQtyIncrease = useCallback(() => {
+    setCartProduct(prev => {
+    return { ...prev, quantity: prev.quantity < 99 ? prev.quantity + 1 : prev.quantity};
+    })
+  }, [])
+
+  const handleQtyDecrease = useCallback(() => {
+    setCartProduct(prev => {
+      
+      return {...prev, quantity: prev.quantity > 0 ? prev.quantity - 1 : prev.quantity}
+    })
+  }, [])
+
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
@@ -92,9 +107,11 @@ const ProductDetails = ({ product }: ProductDetailsProps) => {
         handleColorSelect={handleColorSelect}
         />
         <Horizontal />
-        <div>Quantity</div>
+        <SetQuantity cartProduct={cartProduct} handleQtyIncrease={handleQtyIncrease} handleQtyDecrease={handleQtyDecrease}/>
         <Horizontal />
-        <div>Add to Cart</div>
+        <div className="max-w-[300px]">
+        <Button label="Add to Cart" onClick={() => {}}/>
+        </div>
       </div>
     </div>
   );
