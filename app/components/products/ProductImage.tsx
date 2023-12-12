@@ -5,6 +5,7 @@ import {
   CartProductType,
   SelectedImgType,
 } from '@/app/product/[productId]/ProductDetails'
+import image from 'next/image'
 import Image from 'next/image'
 
 interface ProductImageProps {
@@ -69,7 +70,19 @@ const ProductImage = ({
           )
         })}
       </div>
-      <div></div>
+      <div className="relative col-span-5 aspect-square">
+        <Image
+          fill
+          className="
+          h-full
+          max-h-[500px]
+          min-h-[300px]
+          w-full
+          object-contain"
+          src={cartProduct.selectedImg.image}
+          alt={cartProduct.selectedImg.color}
+        />
+      </div>
     </div>
   )
 }
