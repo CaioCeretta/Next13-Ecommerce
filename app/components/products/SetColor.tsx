@@ -1,58 +1,62 @@
 'use client'
 
-import { CartProductType, SelectedImgType } from "@/app/product/[productId]/ProductDetails";
+import {
+  CartProductType,
+  SelectedImgType,
+} from '@/app/product/[productId]/ProductDetails'
 
 interface SetColorProps {
-  images: SelectedImgType[],
+  images: SelectedImgType[]
   cartProduct: CartProductType
   handleColorSelect: (value: SelectedImgType) => void
-
-
-
 }
 
-const SetColor  = ({images, cartProduct, handleColorSelect}: SetColorProps) => {
-  return ( 
+const SetColor = ({
+  images,
+  cartProduct,
+  handleColorSelect,
+}: SetColorProps) => {
+  return (
     <div>
-      <div className="flex gap-4 items-center">
+      <div className="flex items-center gap-4">
         <span className="font-semibold">COLOR:</span>
-          <div className="flex gap-1">
-            {images.map((img) => (
-            <div
-              key={img.color}
-              onClick={() => handleColorSelect(img)}  
-            >
-              
-              <div className={`
+        <div className="flex gap-1">
+          {images.map((img) => (
+            <div key={img.color} onClick={() => handleColorSelect(img)}>
+              <div
+                className={`
+              flex
               h-7
               w-7
-              rounded-full
-              border-teal-300
-              flex
               items-center
-              justify-center 
+              justify-center
+              rounded-full
+              border-teal-300 
               ${
-                cartProduct.selectedImg.color ===
-                img.color
-                ? 'border-[1.5px]'
-                : 'border-none'
+                cartProduct.selectedImg.color === img.color
+                  ? 'border-[1.5px]'
+                  : 'border-none'
               }
               `}
               >
-                <div style={{background: img.colorCode}} className="
+                <div
+                  style={{ background: img.colorCode }}
+                  className="
                   h-5
                   w-5
+                  cursor-pointer
                   rounded-full
                   border-[1.2px]
                   border-slate-300
-                  cursor-pointer
-                "></div>
+                "
+                ></div>
               </div>
             </div>
-          ))}</div>
+          ))}
         </div>
       </div>
-   );
+    </div>
+  )
 }
- 
-export default SetColor ;
+
+export default SetColor

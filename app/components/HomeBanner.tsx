@@ -1,17 +1,21 @@
-import Image from "next/image";
+import Image from 'next/image'
 
 const HomeBanner = () => {
-  return ( 
-    <div className="relative bg-gradient-to-r from-sky-500 to-sky-700 mb-8">
-      <div className="mx-auto px-8 py-12 flex flex-col gap-2 md:flex-row items-center justify-evenly">
-        <div className="mb-8 md:mb-0 text-center">
-          <h1 className="text-6xl font-bold text-white mb-4">Summer Sale</h1>
-          <p className="text-lg md:text-xl text-white mb-2">Enjoy discounts on selected items</p>
-          <p className="text-2xl md:text-5xl text-yellow-500 font-bold">GET 50% OFF</p>
+  return (
+    <div className="relative mb-8 bg-gradient-to-r from-sky-500 to-sky-700">
+      <div className="mx-auto flex flex-col items-center justify-evenly gap-2 px-8 py-12 md:flex-row">
+        <div className="mb-8 text-center md:mb-0">
+          <h1 className="mb-4 text-6xl font-bold text-white">Summer Sale</h1>
+          <p className="mb-2 text-lg text-white md:text-xl">
+            Enjoy discounts on selected items
+          </p>
+          <p className="text-2xl font-bold text-yellow-500 md:text-5xl">
+            GET 50% OFF
+          </p>
         </div>
-        <div className="w-1/3 relative aspect-video">
-          <Image 
-            src='/banner/banner-image.png'
+        <div className="relative aspect-video w-1/3">
+          <Image
+            src="/banner/banner-image.png"
             alt="banner"
             fill
             className="object-contain"
@@ -19,7 +23,7 @@ const HomeBanner = () => {
         </div>
       </div>
     </div>
-  );
+  )
 }
- 
-export {HomeBanner};
+
+export { HomeBanner }

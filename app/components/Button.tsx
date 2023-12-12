@@ -1,18 +1,18 @@
 'use client'
 
-import { MouseEvent } from "react";
+import { MouseEvent } from 'react'
 import * as MaterialDesign from 'react-icons/md'
-import { IconType } from "react-icons";
+import { IconType } from 'react-icons'
+import { Icon } from '@mui/material'
 
 interface ButtonProps {
-  label: string,
-  disabled?: boolean,
-  outline?: boolean,
-  small?: boolean,
-  custom?: string,
-  icon?: IconType,
-  onClick: (e: MouseEvent<HTMLButtonElement>)
-  => void
+  label: string
+  disabled?: boolean
+  outline?: boolean
+  small?: boolean
+  custom?: string
+  icon?: IconType
+  onClick: (e: MouseEvent<HTMLButtonElement>) => void
 }
 
 const Button = ({
@@ -22,31 +22,38 @@ const Button = ({
   icon,
   outline,
   small,
-  onClick
+  onClick,
 }: ButtonProps) => {
-  return <button
-  disabled
-  className={`
-    disabled:opacity-70
+  return (
+    <button
+      disabled
+      className={`
     disabled:cursor-not-allowedrounded-md
-    hover:opacity-80      
-    transition
-    w-full
-    border-slate-700
     flex
+    w-full      
     items-center
     justify-center
     gap-2
     rounded
-    ${outline ? "bg-white text-slate-700" : "bg-slate-700 text-white"}
-    ${small ? "text-sm font-light py-1 px-2 border-[1px]" : "text-md py-3 px-4 font-semibold border-2"}
-    ${custom ? custom : ''}
+    border-slate-700
+    transition
+    hover:opacity-80
+    disabled:opacity-70
+    ${outline ? 'bg-white text-slate-700' : 'bg-slate-700 text-white'}
+    ${
+      small
+        ? 'border-[1px] px-2 py-1 text-sm font-light'
+        : 'text-md border-2 px-4 py-3 font-semibold'
+    }
+    ${custom || ''}
   
 
-  `}>
-    {icon && <Icon name="icon" size={24}/>}
-    {label}
-  </button>
+  `}
+    >
+      {icon && <Icon name="icon" size={24} />}
+      {label}
+    </button>
+  )
 }
- 
-export default Button;
+
+export default Button
