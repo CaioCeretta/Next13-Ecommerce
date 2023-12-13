@@ -5,7 +5,6 @@ import {
   CartProductType,
   SelectedImgType,
 } from '@/app/product/[productId]/ProductDetails'
-import image from 'next/image'
 import Image from 'next/image'
 
 interface ProductImageProps {

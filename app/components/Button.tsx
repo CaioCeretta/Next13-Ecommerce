@@ -28,16 +28,17 @@ const Button = ({
     <button
       disabled
       className={`
-    disabled:cursor-not-allowedrounded-md
     flex
-    w-full      
+    w-full
     items-center
-    justify-center
+    justify-center      
     gap-2
-    rounded
+    rounded-md
     border-slate-700
+    
     transition
     hover:opacity-80
+    disabled:cursor-not-allowed
     disabled:opacity-70
     ${outline ? 'bg-white text-slate-700' : 'bg-slate-700 text-white'}
     ${
