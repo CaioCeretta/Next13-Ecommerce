@@ -1,8 +1,7 @@
 import { Container } from '@/app/components/Container'
-import ProductDetails from './ProductDetails'
-import { products } from '@/utils/products'
 import RatingList from '@/app/components/products/RatingList'
-import { product } from '@/utils/product'
+import { products } from '@/utils/products'
+import ProductDetails from './ProductDetails'
 
 interface IParams {
   productId?: string

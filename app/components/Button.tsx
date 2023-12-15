@@ -26,7 +26,6 @@ const Button = ({
 }: ButtonProps) => {
   return (
     <button
-      disabled
       className={`
     flex
     w-full
@@ -47,9 +46,8 @@ const Button = ({
         : 'text-md border-2 px-4 py-3 font-semibold'
     }
     ${custom || ''}
-  
-
   `}
+      onClick={onClick}
     >
       {icon && <Icon name="icon" size={24} />}
       {label}
