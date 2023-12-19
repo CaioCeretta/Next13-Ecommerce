@@ -1,9 +1,8 @@
 'use client'
 
-import { MouseEvent } from 'react'
-import * as MaterialDesign from 'react-icons/md'
-import { IconType } from 'react-icons'
 import { Icon } from '@mui/material'
+import { MouseEvent } from 'react'
+import { IconType } from 'react-icons'
 
 interface ButtonProps {
   label: string
@@ -49,7 +48,6 @@ const Button = ({
   `}
       onClick={onClick}
     >
-      {icon && <Icon name="icon" size={24} />}
       {label}
     </button>
   )

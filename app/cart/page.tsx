@@ -1,7 +1,12 @@
+import { Container } from '../components/Container'
+import CartClient from './CartClient'
+
 const Cart = () => {
   return (
-    <div>
-      <h1>This is the cart page</h1>
+    <div className="p-8">
+      <Container>
+        <CartClient />
+      </Container>
     </div>
   )
 }

@@ -20,7 +20,7 @@ const SetQuantity = ({
   return (
     <>
       <div className="flex items-center">
-        {cartCounter ? 1 : <div className="font-semibold">QUANTITY</div>}
+        {cartCounter ? null : <div className="font-semibold">QUANTITY</div>}
       </div>
       <div className="flex gap-4 text-base">
         <button onClick={handleQtyDecrease} className={btnStyles}>
