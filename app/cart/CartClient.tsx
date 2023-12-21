@@ -9,7 +9,7 @@ import ItemContent from './ItemContent'
 import { formatPrice } from '@/utils/formatPrice'
 
 const CartClient = () => {
-  const { cartProducts, handleClearCart, subtotal } = useCart()
+  const { cartProducts, handleClearCart, cartTotalAmount } = useCart()
 
   if (!cartProducts || cartProducts.length === 0) {
     return (
@@ -56,7 +56,7 @@ const CartClient = () => {
         </div>
         <div>
           <div>
-            <span>Sub total: </span>
+            <span>Sub total: {formatPrice(cartTotalAmount)}</span>
             <p>Taxes and shipping calculated at checkout</p>
             <Button label="Checkout" onClick={() => {}} />
             <Link

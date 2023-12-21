@@ -5,7 +5,7 @@ interface HeadingProps {
 
 const Heading = ({ title, center }: HeadingProps) => {
   return (
-    <div className={center ? 'text-center' : 'text-start'}>
+    <div className={`mb-5 ${center ? 'text-center' : 'text-start'}`}>
       <h1 className="text-2xl font-bold">{title}</h1>
     </div>
   )

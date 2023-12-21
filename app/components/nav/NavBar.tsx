@@ -1,13 +1,14 @@
-import { Container } from "@/app/components/Container";
-import { Redressed } from "next/font/google";
-import Link from "next/link";
+import { Container } from '@/app/components/Container'
+import { Redressed } from 'next/font/google'
+import Link from 'next/link'
+import CartCount from './CartCount'
 
-const redressed = Redressed({ subsets: ["latin"], weight: ["400"] });
+const redressed = Redressed({ subsets: ['latin'], weight: ['400'] })
 
 const Navbar = () => {
   return (
-    <div className="sticky top-0 w-full bg-slate-200 z-30 shadw-sm">
-      <div className="py-4 border-b-[1px]">
+    <div className="shadw-sm sticky top-0 z-30 w-full bg-slate-200">
+      <div className="border-b-[1px] py-4">
         <Container>
           <div
             className="
@@ -20,7 +21,7 @@ const Navbar = () => {
           >
             <Link
               href="/"
-              className={`${redressed.className} font-bold text-2xl`}
+              className={`${redressed.className} text-2xl font-bold`}
             >
               E-Shop
             </Link>
@@ -33,14 +34,14 @@ const Navbar = () => {
             md:gap-12
             "
             >
-              <div>CartCount</div>
+              <div>{<CartCount />}</div>
               <div>User Menu</div>
             </div>
           </div>
         </Container>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export { Navbar };
+export { Navbar }
