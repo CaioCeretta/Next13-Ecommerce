@@ -1,12 +1,15 @@
 import FormWrap from '../FormWrap'
+import { getCurrentUser } from '../actions/getCurrentUser'
 import { Container } from '../components/Container'
 import RegisterForm from './RegisterForm'
 
-const Register = () => {
+const Register = async () => {
+  const currentUser = await getCurrentUser()
+
   return (
     <Container>
       <FormWrap>
-        <RegisterForm />
+        <RegisterForm currentUser={currentUser} />
       </FormWrap>
     </Container>
   )

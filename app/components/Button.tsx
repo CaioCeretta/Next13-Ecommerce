@@ -1,6 +1,5 @@
 'use client'
 
-import { Icon } from '@mui/material'
 import { MouseEvent } from 'react'
 import { IconType } from 'react-icons'
 
@@ -18,7 +17,7 @@ const Button = ({
   label,
   custom,
   disabled,
-  icon,
+  icon: Icon,
   outline,
   small,
   onClick,
@@ -33,7 +32,6 @@ const Button = ({
     gap-2
     rounded-md
     border-slate-700
-    
     transition
     hover:opacity-80
     disabled:cursor-not-allowed
@@ -45,9 +43,11 @@ const Button = ({
         : 'text-md border-2 px-4 py-3 font-semibold'
     }
     ${custom || ''}
+    ${disabled}
   `}
       onClick={onClick}
     >
+      {Icon ? <Icon size={24} /> : ''}
       {label}
     </button>
   )

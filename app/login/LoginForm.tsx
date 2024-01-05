@@ -4,30 +4,31 @@ import { useEffect, useState } from 'react'
 import Heading from '../components/Heading'
 import Input from '../components/inputs/Input'
 import { FieldValues, SubmitHandler, useForm } from 'react-hook-form'
-import axios from 'axios'
-import toast from 'react-hot-toast'
-import { signIn } from 'next-auth/react'
-
 import Button from '../components/Button'
 import Link from 'next/link'
 import { AiOutlineGoogle } from 'react-icons/ai'
+import { signIn } from 'next-auth/react'
 import { useRouter } from 'next/navigation'
+import toast from 'react-hot-toast'
 import { SafeUser } from '@/types'
 
-interface RegisterFormProps {
+interface LoginFormProps {
   currentUser: SafeUser
 }
 
-const RegisterForm = ({ currentUser }: RegisterFormProps) => {
+const LoginForm = ({ currentUser }: LoginFormProps) => {
   const router = useRouter()
 
   useEffect(() => {
     if (currentUser) {
       router.push('/cart')
+      router.refresh()
     }
-  }, [currentUser, router])
+  }, [router, currentUser])
 
   const [isLoading, setIsLoading] = useState(false)
+
+  console.log(currentUser)
 
   /* UseForm is a hook to manage state and validation, it returns an object with various methods and properties for form
   management, it takes a generic parameter <FieldValues> which represents the type of the form values, in this case, it's
@@ -50,7 +51,6 @@ const RegisterForm = ({ currentUser }: RegisterFormProps) => {
     formState: { errors },
   } = useForm<FieldValues>({
     defaultValues: {
-      name: '',
       email: '',
       password: '',
     },
@@ -58,48 +58,36 @@ const RegisterForm = ({ currentUser }: RegisterFormProps) => {
 
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
     setIsLoading(true)
+    signIn('credentials', {
+      ...data,
+      redirect: false,
+    }).then((cb) => {
+      setIsLoading(false)
+      if (cb?.ok) {
+        console.log(cb)
+        router.push('/cart')
+        router.refresh()
+        toast.success('Logged in')
+      }
 
-    axios
-      .post('/api/register', data)
-      .then(() => {
-        toast.success('Account Created')
+      if (cb?.error) {
+        toast.error(cb.error)
+      }
+    })
+  }
 
-        signIn('credentials', {
-          email: data.email,
-          password: data.password,
-          redirect: false,
-        }).then((callback) => {
-          if (callback?.ok) {
-            router.push('/cart')
-            router.refresh()
-            toast.success('Logged in')
-          }
-
-          if (callback?.error) {
-            toast.error(callback.error)
-          }
-        })
-      })
-      .catch(() => toast.error('Something went wrong'))
-      .finally(() => setIsLoading(false))
+  if (currentUser) {
+    return <p>Logged in! Redirecting...</p>
   }
 
   return (
     <>
-      <Heading title="Sign up for E-shop" />
+      <Heading title="Sign in to E-Shop" />
       <Button
         outline
-        label="Sign Up with Google"
+        label="Sign In with Google"
         icon={AiOutlineGoogle}
         onClick={() => signIn('google')}
-      />
-      <Input
-        id="name"
-        label="Name"
-        disabled={isLoading}
-        register={register}
-        errors={errors}
-        required
       />
       <Input
         id="email"
@@ -120,12 +108,12 @@ const RegisterForm = ({ currentUser }: RegisterFormProps) => {
       />
       <Button
         onClick={handleSubmit(onSubmit)}
-        label={isLoading ? 'Loading' : 'Sign Up'}
+        label={isLoading ? 'Loading' : 'Login'}
       />
       <p className="text-sm">
-        Already have an account?{' '}
-        <Link className="underline" href="/login">
-          Login
+        Do not have an account?{' '}
+        <Link className="underline" href="/register">
+          Sign Up
         </Link>
       </p>
       <hr className="h-px w-full bg-slate-300" />
@@ -133,4 +121,4 @@ const RegisterForm = ({ currentUser }: RegisterFormProps) => {
   )
 }
 
-export default RegisterForm
+export default LoginForm
