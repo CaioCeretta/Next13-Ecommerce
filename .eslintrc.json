@@ -1,6 +1,34 @@
+
+To create the equivalent ESLint configuration in a JSON file, you can follow this structure and save it in a file named .eslintrc.json:
+
+json
+Copy code
 {
+  "root": true,
+  "env": {
+    "browser": true,
+    "es2020": true
+  },
   "extends": [
-    "next/core-web-vitals",
-    "@rocketseat/eslint-config/react"
-  ]
+    "@rocketseat/eslint-config/react",
+    "eslint:recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:react-hooks/recommended"
+  ],
+  "ignorePatterns": [
+    "dist",
+    ".eslintrc.cjs"
+  ],
+  "parser": "@typescript-eslint/parser",
+  "plugins": [
+    "react-refresh"
+  ],
+  "rules": {
+    "react-refresh/only-export-components": [
+      "warn",
+      {
+        "allowConstantExport": true
+      }
+    ]
+  }
 }
